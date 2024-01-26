@@ -7,7 +7,9 @@ body{
     padding: 2em;
     gap:1.3em;
     display: grid;
-    grid-template-columns: repeat(6, min-content);
+   /* grid-template-columns: repeat(4, min-content);*/
+   grid-template-columns: repeat(auto-fit, minmax(200px,200px)); /* Adjusted to 20% of available space */
+   grid-template-rows: auto 1fr;
 }
 .card {
     background-color: #ccc;
@@ -17,6 +19,9 @@ body{
     box-shadow: 4px 4px 10px #333;
     display: flex;
     position: relative;
+    transition: transform 0.5s ease;/*card flip*/
+    width: calc(100% - 2em); /* Adjusted width to include margins */
+    margin: 0.5em; /* Added margin between cards */
 }
 .card:not(.selected)::before {
     content: "";
@@ -28,13 +33,14 @@ body{
     height: 100%;
 }
 .card img{
-    width: 10em;
+    width: 100%;
     border-radius: .3em;
+    height: auto;
 }
 
 #scores{
     grid-column-start: 1;
-    grid-column-end: 7;
+    grid-column-end: -1;
     display: flex;
     justify-content: space-between;
     font-size: 220%;
@@ -44,6 +50,7 @@ body{
     scale: 1.05;
     box-shadow: 12px 12px 20px #333;
     outline: 1px solid orange;
+    transform: rotateY(180deg);/*card flip*/
 }
 #gameover {
     position: absolute;
@@ -64,6 +71,7 @@ body{
 main{
     position: relative;
     width: max-content;
+    width: 100%;
 }
 .hide{
     visibility: hidden;

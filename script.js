@@ -2,7 +2,7 @@
 
 window.addEventListener("DOMContentLoaded",start);
 const images = ["Son_of_Godzilla_1967.jpg", "Destroy_all_monsters.jpg", "Ghidorah1-1.jpg", "Godzilla_Raids_Again_Poster_A.png", "Godzilla_vs_Gigan_1972.jpg", "Godzilla_vs_Hedorah_1971.jpg", "Godzilla_vs_Mechagodzilla_1974.jpg", "Godzilla_vs_sea_monster_poster_01.jpg", "Godzillas_Revenge_1969.jpg", "Gojira_1954_Japanese_poster.jpg", "Invasion_of_Astro-Monster_Poster_A.png", "King_Kong_vs._Godzilla_Poster_A.png", "Megalon-big.jpg", "Mothra_vs._Godzilla_Poster_A.png","Terror_of_MechaGodzilla_1975.jpg"]
-const CARDS_ON_BOARD = 30;
+const CARDS_ON_BOARD = 18;
 let selectedCard = null;
 let tries = 0;
 let matches = 0;
@@ -35,6 +35,7 @@ function initCards(){
 
 function displayCards(cards){
     const elements = document.querySelectorAll(".card")
+    shuffleArray(images)
     elements.forEach((element,index)=>{
         element.dataset.image = cards[index];
         const image = element.querySelector("img");
@@ -105,4 +106,8 @@ function displayMatches(){
 function gameOver(){
     const winSFX = document.getElementById("winSFX").play();
     document.querySelector("#gameover").classList.remove("hide")
+}
+
+function shuffleArray(array) {
+    array.sort(() => Math.random() - 0.5);
 }
